@@ -72,7 +72,6 @@ class InventarioSerializerTestCase(TestCase):
             pontos = 5
         )
 
-        print(f'Objects: {self.itens.id}') 
 
         self.inventario = SobreviventeInventario(
             item = self.itens,
@@ -86,20 +85,15 @@ class InventarioSerializerTestCase(TestCase):
     def test_verifica_campos_serializados_inventario(self):
         """Teste que verifica os campos que estão sendo serializados (inventario)"""
         data = self.serializer.data
-        print(f'DATA: {data}')
         self.assertEqual(set(data.keys()), set(['id', 'item', 'sobrevivente', 'quantidade']))
 
     def test_verifica_conteudo_dos_campos_serializados_inventario(self):
         """Teste que verifica o conteúdo dos campos serializados(inventario)"""
         data = self.serializer.data
-        print(f'DATA: {data}')
         self.assertEqual(data['id'], self.inventario.pk)
         self.assertEqual(data['item'], self.itens.pk)
         self.assertEqual(data['sobrevivente'], self.sobrevivente.pk)
         self.assertEqual(data['quantidade'], self.inventario.quantidade)
-        print(f'Sobrevivente inventario: {self.sobrevivente.nome}')
-
-       
 
 
 
