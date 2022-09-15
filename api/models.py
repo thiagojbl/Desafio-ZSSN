@@ -1,11 +1,12 @@
 from django.db import models
 
+
 class Itens(models.Model):
     nome = models.CharField('Nome', max_length=50)
     pontos = models.IntegerField('Pontos', blank=True, null=True)
 
     def __str__(self):
-        return self.nome
+        return self.nome 
 
 
 class Sobrevivente(models.Model):
@@ -21,7 +22,6 @@ class Sobrevivente(models.Model):
         through="SobreviventeInventario"
     )
 
-    
     def __str__(self):
         return self.nome
 
@@ -35,7 +35,7 @@ class SobreviventeInventario(models.Model):
         verbose_name="Sobrevivente",
         related_name="inventario_sobreviventes",
         on_delete=models.CASCADE)
-    quantidade = models.IntegerField("Quantidade")
+    quantidade = models.IntegerField("Quantidade", default=0)
 
 
 class Sinalizar(models.Model):

@@ -27,7 +27,7 @@ def criando_inventário(sobrevivente):
         si.save()
     
 
-def criando_sobreviventes(quantidade_de_pessoas=20):
+def criando_sobreviventes(quantidade_de_pessoas=10):
     for i in range(quantidade_de_pessoas):
         random.seed(i)
         id_nome_sexo = random.randrange(0, 2)
@@ -48,14 +48,15 @@ def criando_itens():
         i = Itens(nome=items_nome[i], pontos=itens_pontos[i])
         i.save()
 
-# Povoando as tabelas Itens, Sobrevivente(defaul=20) e Inventário
+# Povoando as tabelas Itens, Sobrevivente(defaul=20) e Inventário  
 sobreviventes = Sobrevivente.objects.all()
 itens = Itens.objects.all()
-
+ 
 # Verificar se os itens já foram inseridos
 if len(itens) < 4: 
     criando_itens()
 
 # Verificar se já exitem sobreviventes (defaul=20)
-if len(sobreviventes) < 10: 
-    criando_sobreviventes(10)
+qtd_sobreviventes = 3
+if len(sobreviventes) < qtd_sobreviventes: 
+    criando_sobreviventes(qtd_sobreviventes)

@@ -1,11 +1,10 @@
-from django.urls import reverse
-from rest_framework.test import APITestCase
-from api.models import Sobrevivente
 import api.gerar_dados as dados
+from api.models import Sobrevivente
+from django.urls import reverse
 from rest_framework import status
-from rest_framework.test import RequestsClient
+from rest_framework.test import APITestCase
 
- 
+
 class SobreviventeTestCase(APITestCase):
 
     def setUp(self):
@@ -79,4 +78,4 @@ class SobreviventeTestCase(APITestCase):
         # Verifica a quantidade de sobreviventes
         self.assertEqual(len(response.data), 10) 
         # Verifica se o nome do primeiro sobrevivente está correto
-        self.assertEqual(response.data[0].get('nome'), 'Miguel Campos') 
+        self.assertEqual(response.data[0].get('nome'), 'Miguel Campos')
