@@ -22,3 +22,14 @@ def sobrevivente(seed=1):
     longitude = fake.longitude()
     return {'nome': nome, 'idade': idade, 'sexo': sexo, 
     'latitude': latitude, 'longitude': longitude}
+
+ 
+def sobrevivente2(seed=1):
+    Faker.seed(seed)
+    random.seed(seed)
+    id_nome_sexo = random.randrange(0, 2)
+    nome,  sexo = gerar_nome_sexo(id_nome_sexo)
+    idade = "{}".format(random.randrange(15, 80)) 
+    latitude = fake.latitude()
+    longitude = fake.longitude()
+    return nome, idade, sexo, latitude, longitude

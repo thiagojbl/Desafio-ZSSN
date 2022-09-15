@@ -8,6 +8,7 @@ from rest_framework.test import APITestCase
 class SobreviventeTestCase(APITestCase):
 
     def setUp(self):
+        Sobrevivente.objects.all().delete()
         self.list_urls = reverse('sobreviventes-list')
         s1 = dados.sobrevivente(seed=1) 
         self.sobrevivente1 = Sobrevivente.objects.create(
@@ -15,8 +16,11 @@ class SobreviventeTestCase(APITestCase):
             idade=s1['idade'],
             sexo=s1['sexo'],
             latitude=s1['latitude'],
-            longitude=s1['longitude'],
+            longitude=s1['longitude']
         )
+
+    def tearDown(self): 
+        Sobrevivente.objects.all().delete()
 
     def test_requisicao_get_para_listar_sobrevivente(self):
         """Teste para verificar a requisição GET para listar os sobreviventes"""
@@ -31,21 +35,23 @@ class SobreviventeTestCase(APITestCase):
 
     def test_requisicao_delete_para_deletar_sobrevivente(self):
         """Teste para verificar requisição DELETE não permitido para deletar um sobrevivente"""  
-        response = self.client.delete('/sobreviventes/1/')
+        response = self.client.delete('/sobreviventes/1/') 
+        self.assertEquals(Sobrevivente.objects.all().count(), 1)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
-    # def test_requisicao_patch_para_atualizar_sobrevivente(self):
+    def test_requisicao_patch_para_atualizar_sobrevivente(self):
         """Teste para verificar a requisição PATCH para atualizar dados de um sobrevivente"""
         # Sobrevivente 1
         # {'nome': 'Miguel Campos', 'idade': '23', 'sexo': 'Masculino', 'latitude': Decimal('-21.5304285'), 'longitude': Decimal('-116.692879')}
         # seed -> Garante que serão esses dados acima (seed=1)
-        data = {'nome': 'Lima', 'latitude': '123', 'longitude': '123'}
-        response = self.client.patch('/sobreviventes/1/', data=data)
+        data = {'nome': 'José', 'latiptude': '123', 'longitude': '123'}
+        sobrevivente = Sobrevivente.objects.all() 
+        id = sobrevivente.get().id
+        response = self.client.patch(f'/sobreviventes/{id}/', data=data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # Teste que garante que será atualizado apenas latitude e longiitude
-        sobrevivente = Sobrevivente.objects.all().first()
-        self.assertNotEqual(sobrevivente.nome, data['nome'])
-
+        sobrevivente = Sobrevivente.objects.all()
+        self.assertNotEqual(sobrevivente.get().nome, data['nome'])
 
     def test_requisicao_delete_para_put_sobrevivente(self):
         """Teste para verificar requisição PUT não permitido para atualizar todos os campos de um sobrevivente"""  

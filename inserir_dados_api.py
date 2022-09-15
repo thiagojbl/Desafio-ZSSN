@@ -57,6 +57,6 @@ if len(itens) < 4:
     criando_itens()
 
 # Verificar se já exitem sobreviventes (defaul=20)
-qtd_sobreviventes = 3
+qtd_sobreviventes = 4
 if len(sobreviventes) < qtd_sobreviventes: 
     criando_sobreviventes(qtd_sobreviventes)

@@ -1,6 +1,9 @@
+from api.models import (Itens, Negociar, Sinalizar, Sobrevivente,
+                        SobreviventeInventario)
+from api.serializers import (InventarioSerializer, ItensSerializer,
+                             SinalizarSerializer, SobreviventeSerializer)
 from django.test import TestCase
-from api.models import Sobrevivente, Itens, SobreviventeInventario, Sinalizar, Negociar
-from api.serializers import SobreviventeSerializer, ItensSerializer, InventarioSerializer, SinalizarSerializer
+
 
 # Teste de Unidade utilizando o TestCase - Não precisa salvar no banco de dados
 class SobreviventeSerializerTestCase(TestCase):
@@ -162,18 +165,3 @@ class NegociarSerializerTestCase(TestCase):
             sobrevivente = self.sobrevivente1,
             sobrevivente_infectado = self.sobrevivente2,  
         )
-
-        # self.serializer = SinalizarSerializer(instance=self.sinalizar)
-
-    # def test_verifica_campos_serializados_sinalizar(self):
-    #     """Teste que verifica os campos que estão sendo serializados (sinalizar)"""
-    #     data = self.serializer.data
-    #     self.assertEqual(set(data.keys()), set(['id', 'sobrevivente', 'sobrevivente_infectado']))
-
-    # def test_verifica_conteudo_dos_campos_serializados_sinalizar(self):
-    #     """Teste que verifica o conteúdo dos campos serializados(sinalizar)"""
-    #     data = self.serializer.data
-    #     self.assertEqual(data['id'], self.sinalizar.pk)
-    #     self.assertEqual(data['sobrevivente'], self.sinalizar.sobrevivente.pk)
-    #     self.assertEqual(data['sobrevivente_infectado'], self.sinalizar.sobrevivente_infectado.pk)
-

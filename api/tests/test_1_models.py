@@ -1,5 +1,7 @@
+from api.models import (Itens, Negociar, Sinalizar, Sobrevivente,
+                        SobreviventeInventario)
 from django.test import TestCase
-from api.models import Sobrevivente, Itens, SobreviventeInventario, Sinalizar, Negociar
+
 
 class SobreviventeModelTestCase(TestCase):
     
@@ -121,7 +123,7 @@ class NegociarModelTestCase(TestCase):
             longitude = '9384756', 
             # infectado = default(False)
         )
-
+ 
         self.negociar = Negociar(
             sobrevivente1 = self.sobrevivente1,
             sobrevivente2 = self.sobrevivente2,

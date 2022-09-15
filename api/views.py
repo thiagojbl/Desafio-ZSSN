@@ -5,9 +5,11 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from api.models import Itens, Sinalizar, Sobrevivente, SobreviventeInventario
+from api.models import (Itens, Negociar, Sinalizar, Sobrevivente,
+                        SobreviventeInventario)
 from api.serializers import (InventarioSerializer, ItensSerializer,
-                             SinalizarSerializer, SobreviventePatchSerializer,
+                             NegociarSerializer, SinalizarSerializer,
+                             SobreviventePatchSerializer,
                              SobreviventeSerializer)
 
 
@@ -42,7 +44,7 @@ class SobreviventeViewSet(viewsets.ModelViewSet):
             'total_nao_infectados': count_no_inf,
             'total_infectados': count_inf,
             'per_infectados':  round(per_infectados, 1),
-            'per_noinfectados': round(per_noinfectados, 1)
+            'per_nao_infectados': round(per_noinfectados, 1)
         }, status=200)
 
     @action(methods=["get"], detail=False,  url_path=r'perdidos')
@@ -69,7 +71,6 @@ class SobreviventeViewSet(viewsets.ModelViewSet):
         itens = Itens.objects.all()
         # Obtem a quantidade de sobreviventes
         count_sobreviventes = Sobrevivente.objects.filter(infectado=False).count()
-        print(count_sobreviventes)
         # Gera uma lista mádia
         media_geral = {"media": []}
         for item in itens:  
@@ -84,9 +85,9 @@ class SobreviventeViewSet(viewsets.ModelViewSet):
                     f'{item}': round(soma_total['quantidade__sum']/count_sobreviventes, 1),
                 }
             )
-        print(media_geral)
         # payload = dict(media_geral=media_geral)
         return Response(media_geral, status=200)
+
 
 class ItensViewSet(viewsets.ModelViewSet):
     queryset = Itens.objects.all()
@@ -104,6 +105,6 @@ class SinalizarViewSet(viewsets.ModelViewSet):
     serializer_class = SinalizarSerializer
 
 
-# class NegociarViewSet(viewsets.ModelViewSet):
-#     queryset = Negociar.objects.all()
-#     serializer_class = NegociarSerializer    
+class NegociarViewSet(viewsets.ModelViewSet):
+    queryset = Negociar.objects.all()
+    serializer_class = NegociarSerializer   

@@ -21,6 +21,7 @@ class ItensSerializer(serializers.ModelSerializer):
         
         model = Itens
         fields = ['id', 'nome', 'pontos']
+        
     def validate(self, data):
         if data['pontos'] < 0: 
             raise serializers.ValidationError(
@@ -42,7 +43,8 @@ class InventarioSerializer(serializers.ModelSerializer):
 class SinalizarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sinalizar
-        fields = ['id', 'sobrevivente', 'sobrevivente_infectado']
+        print('Sinalizar')
+        fields = '__all__'
 
 
 class NegociarSerializer(serializers.ModelSerializer):

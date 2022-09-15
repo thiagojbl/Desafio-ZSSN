@@ -6,7 +6,7 @@ from rest_framework.test import APITestCase
 
 class ItensTestCase(APITestCase):
 
-    def setUp(self):
+    def setUp(self): 
         self.list_urls = reverse('itens-list')
         self.item = Itens.objects.create(
             nome='Água',
