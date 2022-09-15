@@ -24,7 +24,7 @@ class SobreviventeTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_requisicao_post_para_criar_sobrevivente(self):
-        """Teste par averificar a requisição POST para criar um curso"""
+        """Teste par averificar a requisição POST para criar um sobrevivente"""
         data = dados.sobrevivente(1)
         response = self.client.post(self.list_urls, data=data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -34,14 +34,17 @@ class SobreviventeTestCase(APITestCase):
         response = self.client.delete('/sobreviventes/1/')
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
-    def test_requisicao_patch_para_atualizar_sobrevivente(self):
+    # def test_requisicao_patch_para_atualizar_sobrevivente(self):
         """Teste para verificar a requisição PATCH para atualizar dados de um sobrevivente"""
         # Sobrevivente 1
         # {'nome': 'Miguel Campos', 'idade': '23', 'sexo': 'Masculino', 'latitude': Decimal('-21.5304285'), 'longitude': Decimal('-116.692879')}
         # seed -> Garante que serão esses dados acima (seed=1)
-        data = {'nome': 'Bryan Cardoso', 'idade':20}
+        data = {'nome': 'Lima', 'latitude': '123', 'longitude': '123'}
         response = self.client.patch('/sobreviventes/1/', data=data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        # Teste que garante que será atualizado apenas latitude e longiitude
+        sobrevivente = Sobrevivente.objects.all().first()
+        self.assertNotEqual(sobrevivente.nome, data['nome'])
 
 
     def test_requisicao_delete_para_put_sobrevivente(self):
@@ -72,10 +75,10 @@ class SobreviventeTestCase(APITestCase):
                 longitude=s['longitude'],
             )
         response = self.client.get(self.list_urls, format='json') 
-        sobreviventes = Sobrevivente.objects.all()
+        # sobreviventes = Sobrevivente.objects.all().count()
         # Verifica se a requisição GET teve sucesso
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # Verifica a quantidade de sobreviventes
-        self.assertEqual(len(response.data), 10) 
+        self.assertEqual(len(response.data), 10)
         # Verifica se o nome do primeiro sobrevivente está correto
         self.assertEqual(response.data[0].get('nome'), 'Miguel Campos')

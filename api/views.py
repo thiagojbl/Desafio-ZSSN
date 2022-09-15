@@ -91,7 +91,7 @@ class SobreviventeViewSet(viewsets.ModelViewSet):
 class ItensViewSet(viewsets.ModelViewSet):
     queryset = Itens.objects.all()
     serializer_class = ItensSerializer
-    http_method_names = ['get', 'post']
+    http_method_names = ['get', 'post', 'patch']
 
 
 class InventarioViewSet(viewsets.ModelViewSet):

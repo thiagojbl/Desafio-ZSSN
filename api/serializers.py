@@ -18,18 +18,22 @@ class SobreviventePatchSerializer(serializers.ModelSerializer):
 
 class ItensSerializer(serializers.ModelSerializer):
     class Meta:
+        
         model = Itens
         fields = ['id', 'nome', 'pontos']
+    def validate(self, data):
+        if data['pontos'] < 0: 
+            raise serializers.ValidationError(
+                'Os pontos não pode ser negativo.')
+        return data
 
 class InventarioSerializer(serializers.ModelSerializer):
     
     class Meta:
-        print('cheguei')
         model = SobreviventeInventario
         fields = ['id', 'item', 'sobrevivente', 'quantidade']
 
     def validate(self, data):
-        print(data['quantidade'])
         if data['quantidade'] < 0:
             raise serializers.ValidationError(
                 'A quantidade de itens não pode ser negativo.')

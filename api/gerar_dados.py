@@ -21,4 +21,4 @@ def sobrevivente(seed=1):
     latitude = fake.latitude()
     longitude = fake.longitude()
     return {'nome': nome, 'idade': idade, 'sexo': sexo, 
-    'latitude': latitude, 'longitude': longitude} 
+    'latitude': latitude, 'longitude': longitude}
