@@ -1,7 +1,7 @@
-docker build -t thiagojb12/desafio-thiago .
+docker build -t thiagojb12/desafio-zssn .
 
-docker push thiagojb12/desafio-thiago
+docker push thiagojb12/desafio-zssn
 
-docker run -p 8000:8000 thiagojb12/desafio-thiago:3
+docker run -p 8000:8000 thiagojb12/desafio-zssn:3
 
-docker tag thiagojb12/desafio-thiago thiagojb12/desafio-thiago:3
+docker tag thiagojb12/desafio-zssn thiagojb12/desafio-zssn:3

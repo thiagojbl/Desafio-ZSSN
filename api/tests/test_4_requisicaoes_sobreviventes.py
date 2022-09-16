@@ -19,8 +19,8 @@ class SobreviventeTestCase(APITestCase):
             longitude=s1['longitude']
         )
 
-    def tearDown(self): 
-        Sobrevivente.objects.all().delete()
+    # def tearDown(self): 
+    #     Sobrevivente.objects.all().delete()
 
     def test_requisicao_get_para_listar_sobrevivente(self):
         """Teste para verificar a requisição GET para listar os sobreviventes"""
@@ -85,6 +85,6 @@ class SobreviventeTestCase(APITestCase):
         # Verifica se a requisição GET teve sucesso
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # Verifica a quantidade de sobreviventes
-        self.assertEqual(len(response.data), 10)
+        self.assertEqual(len(response.data), 10)   
         # Verifica se o nome do primeiro sobrevivente está correto
         self.assertEqual(response.data[0].get('nome'), 'Miguel Campos')
