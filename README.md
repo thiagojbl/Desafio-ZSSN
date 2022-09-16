@@ -57,7 +57,7 @@ Para utilizar a aplicação basta acessar o link público: <a href="http://ec2-1
 
 #### 1) Todos os pedidos por cliente (filtro pelo cliente):
 
-  $ ```http://ec2-18-211-64-16.compute-1.amazonaws.com/```
+  $ ```http://ec2-18-211-64-16.compute-1.amazonaws.com/doc```
 
 
 #### Collections utilizadas neste projeto
