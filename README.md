@@ -63,4 +63,4 @@ Para utilizar a aplicação basta acessar o link público: <a href="http://ec2-1
 #### Collections utilizadas neste projeto
 
 
-[desafio.postman_collection.zip]
+https://github.com/thiagojbl/Desafio-ZSSN/blob/main/API-ZSSN.postman_collection.json
