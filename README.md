@@ -63,4 +63,4 @@ Para utilizar a aplicação basta acessar o link público: <a href="http://ec2-1
 #### Collections utilizadas neste projeto
 
 
-[desafio.postman_collection.zip](https://github.com/thiagojbl/desafio-sistema-pedidos/files/9145635/desafio.postman_collection.zip)
+[desafio.postman_collection.zip]
