@@ -69,11 +69,11 @@ WSGI_APPLICATION = 'zssn.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'desafio1',
-        'USER': 'desafiozssn',
-        'PASSWORD': 'desafio12jb',
-        'HOST': 'desafio1.chqxjwmftzaw.us-east-1.rds.amazonaws.com',
-        'PORT': '5432', # 5432 is default
+        'NAME': 'name_db',
+        'USER': 'user',
+        'PASSWORD': 'password',
+        'HOST': 'host',
+        'PORT': 'port', # 5432 is default
     }
 }
 
