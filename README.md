@@ -51,7 +51,7 @@ Para utilizar a aplicação basta acessar o link público: <a href="http://ec2-1
 
 ### Execute no docker
 
-   $  ```docker run -p 8000:8000 thiagojb12/desafio-thiago:5```
+   $  ```docker run -p 8000:8000 thiagojb12/desafio-thiago:6```
 
 ## Endpoints 
 
